@@ -9,13 +9,21 @@ import { Istd } from '../../models/student';
 })
 export class StudentComponent implements OnInit {
 
-  studentArr: Array<Istd> = [{
+  studentArr: Array<Istd> = [
+    {
     fname: "gajanan",
     lname: "kadam",
     email: "gaju@123",
     contact: 8552043307,
     id: "123"
-  }]
+  }
+,{
+     fname: "shankar",
+    lname: "kadam",
+    email: "shankar@124",
+    contact: 8180903540,
+    id: "124"
+}]
 
   editId !: string
   isEditMode: boolean = false;
