@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <h3 class="text-center">Student Crud Using TD Form</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <form #addstudent="ngForm" (ngSubmit)="onsubmit()">
+                <div class="form-group">
+                    <label for="fname">Fname</label>
+                    <input required ngModel name="fname" #fname="ngModel" type="text" class="form-control">
+                    <strong class="text-danger" *ngIf="fname.touched && fname.invalid">plz Enter valid
+                        Username!!!</strong>
+                </div>
+                <div class="form-group">
+                    <label for="Lname">Lname</label>
+                    <input ngModel name="lname" required #lname="ngModel" type="text" class="form-control">
+                    <strong class="text-danger" *ngIf="lname.touched && lname.invalid">plz Enter valid last
+                        name!!!</strong>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input ngModel name="email" required #email="ngModel" type="text" class="form-control">
+
+                    <strong class="text-danger" *ngIf="email.touched && email.invalid">
+                        email is mandotry field!!!
+                    </strong>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="Contact">Contact</label>
+                    <input ngModel name="contact" required #contact="ngModel" type="text" class="form-control">
+                    <strong class="text-danger" *ngIf="contact.touched && contact.invalid">
+                        plz fill contact is here!!
+                    </strong>
+
+                </div>
+                <button *ngIf="!isEditMode" mat-raised-button color="primary" type="submit" class="btn btn-block">Add
+                    Student</button>
+                <button *ngIf="isEditMode" mat-raised-button (click)="onupdate()" color="primary" type="button"
+                    class="btn btn-block">Updaet Student</button>
+
+
+            </form>
+        </div>
+
+
+        <div class="col-md-7">
+            <table class="table table-bordered mt-4" *ngIf="studentArr.length > 0; else noData">
+                <thead>
+                    <tr>
+                        <th>Sr</th>
+                        <th>Fname</th>
+                        <th>Lname</th>
+                        <th>Email</th>
+                        <th>contact</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let std of studentArr; let i=index ; trackBy:trackById">
+                        <td>{{ i+1 }}</td>
+                        <td>{{std.fname}}</td>
+                        <td>{{std.lname}}</td>
+                        <td>{{std.email}}</td>
+                        <td>{{std.contact}}</td>
+                        <td> <button (click)="onedit(std)" mat-raised-button color="primary">Edit</button></td>
+                        <td> <button [disabled]="isEditMode && editId === std.id" (click)="onremove(std.id)"
+                                mat-raised-button color="warn">Delete</button></td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <ng-template #noData>
+
+                <strong class="text-danger ">
+                    No Student Found!!!!
+                </strong>
+
+            </ng-template>
+
+        </div>
+    </div>
+</div>
